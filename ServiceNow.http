@@ -1,0 +1,6 @@
+@ServiceNow_HostAddress = http://localhost:5273
+
+GET {{ServiceNow_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
