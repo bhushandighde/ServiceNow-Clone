@@ -35,7 +35,7 @@ namespace ServiceNow.ServiceNow.Infrastructure.Repositories
         }
         public DateTime GetDateTime()
         {
-            return DateTime.Now;
+            return DateTime.UtcNow;
         }
         public async Task<bool> AddTickettoDB(Tickets ticketData)
         {
