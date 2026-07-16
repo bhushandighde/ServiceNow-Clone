@@ -33,7 +33,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 // 2. Register DbContext BEFORE builder.Build()
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(connectionString);
+    options.UseNpgsql(connectionString);
 });
 builder.Services.AddAuthentication(options =>
 {
@@ -95,6 +95,12 @@ builder.Services.AddTransient(
 builder.Services.AddAutoMapper(typeof(ServiceNow.ServiceNow.Application.AssemblyReference).Assembly);
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    db.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
