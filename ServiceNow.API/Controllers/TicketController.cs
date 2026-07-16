@@ -13,7 +13,9 @@ using ServiceNow.ServiceNow.Application.Features.Tickets.Commands.UpdateTicket;
 using ServiceNow.ServiceNow.Application.Features.Tickets.Commands.DeleteTicket;
 namespace ServiceNow.ServiceNow.API.Controllers
 {
-    public class TicketController : Controller
+    [ApiController]
+    [Route("api/[controller]")]
+    public class TicketController : ControllerBase
     {
         private readonly ITicketService _iTicketService;
         private readonly IMediator _mediator;
@@ -67,7 +69,9 @@ namespace ServiceNow.ServiceNow.API.Controllers
 
             return Ok();
         }
-            public async Task<IActionResult> UpdateTickets(UpdateTicket ticketData)
+
+        [HttpPut("updateTicket")]
+        public async Task<IActionResult> UpdateTickets(UpdateTicket ticketData)
         {
             var command = new UpdateTicketCommand(
                                ticketData.Id,

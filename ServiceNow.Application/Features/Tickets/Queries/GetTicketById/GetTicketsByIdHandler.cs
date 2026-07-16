@@ -22,6 +22,8 @@ namespace ServiceNow.ServiceNow.Application.Features.Tickets.Queries.GetTicketBy
         public async Task<TicketResponseDto> Handle(GetTicketsByIdQuery request, CancellationToken cancellationToken)
         {
             var t = await _ticketRepository.GetTicketsByIdFromDB(request.TicketId);
+            if (t == null)
+                throw new KeyNotFoundException($"Ticket {request.TicketId} not found.");
 
             return new TicketResponseDto
             {
