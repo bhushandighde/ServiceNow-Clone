@@ -29,6 +29,7 @@ builder.Host.UseSerilog();
 Log.Information("Application started successfully.");
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+Console.WriteLine($"Connection String: [{connectionString}]");
 
 // 2. Register DbContext BEFORE builder.Build()
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
