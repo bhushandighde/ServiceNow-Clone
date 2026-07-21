@@ -1,6 +1,6 @@
 ﻿namespace ServiceNow.ServiceNow.Domain.Enum
 {
-    public enum gti
+    public enum TicketStatus
     {
         Pending,
 
