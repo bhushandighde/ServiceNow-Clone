@@ -36,6 +36,16 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(connectionString);
 });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:5173")
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -114,6 +124,7 @@ if (!app.Environment.IsProduction())
 {
     app.UseHttpsRedirection();
 }
+app.UseCors("AllowReact");
 app.UseAuthentication(); 
 app.UseAuthorization();
 
