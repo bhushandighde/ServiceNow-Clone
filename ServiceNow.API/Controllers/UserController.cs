@@ -1,5 +1,6 @@
 ﻿using Azure.Core;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using ServiceNow.ServiceNow.Application.Interfaces;
 
@@ -23,9 +24,9 @@ namespace ServiceNow.ServiceNow.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(string email, string password)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            var result = await _iauthService.LoginAsync(email, password);
+            var result = await _iauthService.LoginAsync(request.Email, request.Password);
 
             return Ok(result);
         }
