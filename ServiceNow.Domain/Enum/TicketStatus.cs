@@ -2,11 +2,11 @@
 {
     public enum TicketStatus
     {
-        Pending,
+        Open,
 
-        Approved,
+        InProgress,
 
-        Rejected
+        Closed
 
     }
 }
