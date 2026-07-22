@@ -14,6 +14,7 @@ using System.Reflection.Metadata;
 using ServiceNow.ServiceNow.Application.Interfaces;
 using ServiceNow.ServiceNow.Application.Behaviour;
 using ServiceNow.ServiceNow.API.Middlewares;
+using System.Text.Json.Serialization;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -87,8 +88,11 @@ builder.Services.AddScoped<ITicketRespository, TicketRepository>();
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(cfg =>
