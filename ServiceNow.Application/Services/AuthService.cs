@@ -36,7 +36,7 @@ namespace ServiceNow.ServiceNow.Application.Services
                     var token = GenerateToken(user);
 
 
-                    return new LoginResponse { Success = true, Token=token };
+                    return new LoginResponse { Success = true, Token=token  ,UserId= user.Id};
                 }
 
             }
