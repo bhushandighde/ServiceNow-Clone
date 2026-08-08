@@ -83,6 +83,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<ITicketRespository, TicketRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 
 

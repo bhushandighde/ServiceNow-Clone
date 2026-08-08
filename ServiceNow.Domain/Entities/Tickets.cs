@@ -16,5 +16,7 @@ namespace ServiceNow.ServiceNow.Domain.Entities
         public int CreatedBy { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

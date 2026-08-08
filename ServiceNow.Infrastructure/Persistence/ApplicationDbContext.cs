@@ -16,5 +16,18 @@ namespace ServiceNow.Infrastructure.Persistence
         public DbSet<User> Users { get; set; }
 
         public DbSet<Tickets> Tickets { get; set; }
+
+        public DbSet<Comment> Comments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Ticket)
+                .WithMany(t => t.Comments)
+                .HasForeignKey(c => c.TicketId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

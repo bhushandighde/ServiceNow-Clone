@@ -14,9 +14,7 @@ namespace ServiceNow.ServiceNow.Application.Features.Tickets.Commands.UpdateTick
             _ticketRespository = ticketRespository;
         }
 
-        public async Task<bool> Handle(
-            UpdateTicketCommand request,
-            CancellationToken cancellationToken)
+        public async Task<bool> Handle( UpdateTicketCommand request, CancellationToken cancellationToken)
         {
 
             var ticket = new DTOs.UpdateTicket
