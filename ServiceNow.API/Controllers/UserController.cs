@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using ServiceNow.ServiceNow.Application.Interfaces;
-
+using ServiceNow.ServiceNow.Application.DTOs;
 namespace ServiceNow.ServiceNow.API.Controllers
 {
     [Route("api/[controller]")]
@@ -32,9 +32,9 @@ namespace ServiceNow.ServiceNow.API.Controllers
         }
 
         [HttpPost("create")]
-        public async Task<IActionResult> CreateUser(string username, string password, string email)
+        public async Task<IActionResult> CreateUser(CreateUserRequest user)
         {
-            var result = await _iauthService.CreateUserAsync(username, password, email);
+            var result = await _iauthService.CreateUserAsync(user.Username, user.Password, user.Email);
             return Ok();
         }
 
