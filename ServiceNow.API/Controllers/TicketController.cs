@@ -78,7 +78,8 @@ namespace ServiceNow.ServiceNow.API.Controllers
                                ticketData.Title,
                                ticketData.Description,
                                ticketData.Status,
-                               ticketData.Priority
+                               ticketData.Priority,
+                               ticketData.AssignedTo
                               );
 
             var response = await _mediator.Send(command);

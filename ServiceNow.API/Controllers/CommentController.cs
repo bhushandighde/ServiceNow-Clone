@@ -40,7 +40,7 @@ namespace ServiceNow.ServiceNow.API.Controllers
             return Ok(response);
         }
 
-        [HttpGet("getCommentsForTicketId")]
+        [HttpGet("getCommentsForTicketId/{TicketId}")]
 
         public async Task<IActionResult> GetCommentsForTicketId( int TicketId)
         {

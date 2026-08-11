@@ -2,6 +2,7 @@
 using ServiceNow.ServiceNow.Application.Features.Tickets.Commands.CreateTicket;
 using ServiceNow.ServiceNow.Application.Interfaces;
 using ServiceNow.ServiceNow.Infrastructure.Repositories;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace ServiceNow.ServiceNow.Application.Features.Tickets.Commands.UpdateTicket
 {
@@ -14,7 +15,7 @@ namespace ServiceNow.ServiceNow.Application.Features.Tickets.Commands.UpdateTick
             _ticketRespository = ticketRespository;
         }
 
-        public async Task<bool> Handle( UpdateTicketCommand request, CancellationToken cancellationToken)
+        public async Task<bool>  Handle( UpdateTicketCommand request, CancellationToken cancellationToken)
         {
 
             var ticket = new DTOs.UpdateTicket
@@ -24,6 +25,7 @@ namespace ServiceNow.ServiceNow.Application.Features.Tickets.Commands.UpdateTick
                 Description = request.Description,
                 Status = request.Status,
                 Priority = request.Priority,
+               AssignedTo = request.AssignedTo
             };
             await _ticketRespository.updateTicketInDb(request);
 

@@ -17,5 +17,9 @@ namespace ServiceNow.ServiceNow.Application.DTOs
         public int CreatedBy { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        public int? AssignedTo { get; set; }
+
+        public AssignedUserDto? AssignedUser { get; set; }
     }
 }

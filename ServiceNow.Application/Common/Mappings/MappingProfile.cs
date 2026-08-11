@@ -16,6 +16,7 @@ namespace ServiceNow.ServiceNow.Application.Mappings
             CreateMap<UpdateTicketCommand, Tickets>();
             CreateMap<CreateCommentCommand, Comment>();
             CreateMap<Comment, CreateCommentResponse>();
+            CreateMap<User, AssignedUserDto>();
 
         }
     }

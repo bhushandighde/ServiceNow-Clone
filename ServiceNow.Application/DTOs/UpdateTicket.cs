@@ -12,5 +12,6 @@ namespace ServiceNow.ServiceNow.Application.DTOs
         public TicketStatus Status { get; set; }
 
         public Priority Priority { get; set; }
+        public int? AssignedTo { get; set; }
     }
 }

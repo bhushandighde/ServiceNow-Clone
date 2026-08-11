@@ -28,6 +28,14 @@ namespace ServiceNow.Infrastructure.Persistence
                 .WithMany(t => t.Comments)
                 .HasForeignKey(c => c.TicketId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Tickets>()
+    .HasOne(t => t.AssignedUser)
+    .WithMany()
+    .HasForeignKey(t => t.AssignedTo)
+    .OnDelete(DeleteBehavior.SetNull);
+
+
         }
     }
 }

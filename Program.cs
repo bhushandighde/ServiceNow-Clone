@@ -15,6 +15,9 @@ using ServiceNow.ServiceNow.Application.Interfaces;
 using ServiceNow.ServiceNow.Application.Behaviour;
 using ServiceNow.ServiceNow.API.Middlewares;
 using System.Text.Json.Serialization;
+using ServiceNow.ServiceNow.Infrastructure.AI;
+using ServiceNow.ServiceNow.Application.Interfaces;
+using ServiceNow.ServiceNow.Infrastructure.AI;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -84,7 +87,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITicketService, TicketService>();
 builder.Services.AddScoped<ITicketRespository, TicketRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-
+builder.Services.AddHttpClient<IAiService, AiService>();
 
 
 // Add services to the container.
@@ -109,6 +112,7 @@ builder.Services.AddTransient(
     typeof(ValidationBehavior<,>));
 
 builder.Services.AddAutoMapper(typeof(ServiceNow.ServiceNow.Application.AssemblyReference).Assembly);
+var apiKey = builder.Configuration["Google:ApiKey"];
 
 var app = builder.Build();
 

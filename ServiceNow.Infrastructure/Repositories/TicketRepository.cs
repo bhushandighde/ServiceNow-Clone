@@ -31,7 +31,7 @@ namespace ServiceNow.ServiceNow.Infrastructure.Repositories
 
         public async Task<Tickets> GetTicketsByIdFromDB(int ticketid)
         {
-            return await _db.Tickets.AsNoTracking().FirstOrDefaultAsync(u => u.Id == ticketid);
+            return await _db.Tickets.AsNoTracking().Include(t => t.AssignedUser).FirstOrDefaultAsync(u => u.Id == ticketid);
         }
         public DateTime GetDateTime()
         {

@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using ServiceNow.ServiceNow.Application.DTOs;
@@ -12,11 +13,12 @@ namespace ServiceNow.ServiceNow.Application.Features.Tickets.Queries.GetTicketBy
     {
 
         private readonly ITicketRespository _ticketRepository;
+        private readonly IMapper _mapper;
 
-
-        public GetTicketsByIdHandler(ITicketRespository ticketRepository)
+        public GetTicketsByIdHandler(ITicketRespository ticketRepository, IMapper mapper)
         {
             _ticketRepository = ticketRepository;
+            _mapper = mapper;
         }
 
         public async Task<TicketResponseDto> Handle(GetTicketsByIdQuery request, CancellationToken cancellationToken)
@@ -25,18 +27,12 @@ namespace ServiceNow.ServiceNow.Application.Features.Tickets.Queries.GetTicketBy
             if (t == null)
                 throw new KeyNotFoundException($"Ticket {request.TicketId} not found.");
 
-            return new TicketResponseDto
-            {
-                Id = t.Id,
-                Title = t.Title,
-                Description = t.Description,
-                Status = t.Status,
-                Priority = t.Priority,
-                CreatedAt = t.CreatedAt,
-                CreatedBy = t.CreatedBy
-            };
-            
-        }
 
+            Console.WriteLine($"AssignedTo: {t?.AssignedTo}");
+            Console.WriteLine($"AssignedUser: {t?.AssignedUser?.Name}");
+
+            return _mapper.Map<TicketResponseDto>(t);
+
+        }
     }
-}
+    }

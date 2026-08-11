@@ -8,7 +8,8 @@ namespace ServiceNow.ServiceNow.Application.Features.Tickets.Commands.UpdateTick
         string Title,
         string Description,
         TicketStatus Status,
-        Priority Priority
+        Priority Priority,
+        int? AssignedTo 
         ) : IRequest<bool>;
    
 }
