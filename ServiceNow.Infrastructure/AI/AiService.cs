@@ -67,7 +67,7 @@ namespace ServiceNow.ServiceNow.Infrastructure.AI
 
                 Include:
 
-                1. Issue Summary
+                1. Issue Summaries
                 2. Current Discussion
                 3. Current Situation
                 4. Recommended Next Step
