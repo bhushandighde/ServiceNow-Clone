@@ -21,6 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageReference Include="Moq" Version="4.20.72" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
     <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
@@ -30,5 +31,19 @@
   <ItemGroup>
     <Folder Include="ServiceNow.Application\Features\AI\Ticket Summary\DTO%27s\" />
   </ItemGroup>
+    <ItemGroup>
+        <Compile Remove="ServiceNow.Tests\**" />
+        <EmbeddedResource Remove="ServiceNow.Tests\**" />
+        <None Remove="ServiceNow.Tests\**" />
+    </ItemGroup>
 
+
+ 
+    <PropertyGroup>
+        <DefaultItemExcludes>
+            $(DefaultItemExcludes);
+            ServiceNow.Tests\**;
+        </DefaultItemExcludes>
+    </PropertyGroup>
+  
 </Project>
